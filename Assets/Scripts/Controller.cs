@@ -11,10 +11,12 @@ public class Controller : MonoBehaviour
     public bool gameOver = false;
     public GameObject gameOverText;
     public GameObject gameOverScreen;
-    public AudioSource bgMusic;
+    public AudioSource bgMusic, scoreSound;
     public static bool isPlaying = false;
+    public float scrollSpeed = -1.5f;
 
     private int score = 0;
+
 
     void Awake()
     {
@@ -45,6 +47,7 @@ public class Controller : MonoBehaviour
             return;
         }
         score++;
+        scoreSound.Play();
         scoreText.text = "Score: " + score.ToString();
     }
 
