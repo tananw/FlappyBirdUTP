@@ -15,6 +15,6 @@ public class Ground : MonoBehaviour
 
     void OnBecameInvisible()
     {
-        transform.Translate(80f, 0, 0); ;
+        transform.Translate(80f, 0, 0);
     }
 }
