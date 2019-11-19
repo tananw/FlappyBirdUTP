@@ -473,7 +473,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 51053709}
   bgMusic: {fileID: 1720760355}
   scoreSound: {fileID: 1083793119}
-  scrollSpeed: -10
+  scrollSpeed: -7
 --- !u!4 &442866517
 Transform:
   m_ObjectHideFlags: 0
@@ -503,9 +503,9 @@ MonoBehaviour:
   pipePrefab: {fileID: 5357858317842385163, guid: 28b212af9b0de2a4ab55526797b947d6,
     type: 3}
   numberOfPipes: 5
-  spawnRate: 2
-  pipeMin: -4
-  pipeMax: -1
+  spawnRate: 1.1
+  pipeMin: -5
+  pipeMax: -2
 --- !u!1 &484197013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,8 +2163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbdd3c26940a91344bd861b5ba845bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  tapForce: 200
+  tapForce: 235
   isDead: 0
   jumpSound: {fileID: 1553625152}
   bumpSound: {fileID: 1209996031}
