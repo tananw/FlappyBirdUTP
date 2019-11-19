@@ -8,7 +8,7 @@ public class Pipe : MonoBehaviour
 	public AudioSource scoreSound;
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.GetComponent<Bird>() != null) {
-			Controller.instance.BirdScored();
+			Controller.instance.playerScored();
 			scoreSound.Play();
 		}
 	}

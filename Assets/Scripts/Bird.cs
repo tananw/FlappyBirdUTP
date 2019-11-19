@@ -8,11 +8,10 @@ public class Bird : MonoBehaviour
 {
 	public float speed = 2;
 	public float tapForce = 300;
-	public bool gameOver = false;
+	public bool isDead = false;
 	public GameObject target;
 	public AudioSource jumpSound, bumpSound;
 
-	public Text text;
 	// Start is called before the first frame update
 	void Start() {
 		Time.timeScale = 0;
@@ -21,23 +20,19 @@ public class Bird : MonoBehaviour
 
 	// Update is called once per frame
 	void Update() {
-		if (!gameOver) {
+		if (!isDead) {
 			if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
 				jumpSound.Play();
-				if (target != null) {
-					Destroy(target);
-				}
 				Time.timeScale = 1;
-				text.gameObject.SetActive(false);
 				GetComponent<Rigidbody2D>().AddForce(Vector2.up * tapForce);
 			}
 		}
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision) {
-		gameOver = true;
+		isDead = true;
 		bumpSound.Play();
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Controller.instance.playerDied();
 	}
 }
 
