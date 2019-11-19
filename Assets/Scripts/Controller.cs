@@ -11,11 +11,19 @@ public class Controller : MonoBehaviour
     public bool gameOver = false;
     public GameObject gameOverText;
     public GameObject gameOverScreen;
+    public AudioSource bgMusic;
+    public static bool isPlaying = false;
 
     private int score = 0;
 
     void Awake()
     {
+        if (!isPlaying)
+        {
+            bgMusic.Play();
+            isPlaying = true;
+        }
+        DontDestroyOnLoad(bgMusic);
         if (instance == null)
             instance = this;
         else if (instance != this)

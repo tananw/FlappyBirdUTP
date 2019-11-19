@@ -434,6 +434,7 @@ MonoBehaviour:
   gameOver: 0
   gameOverText: {fileID: 1597164328}
   gameOverScreen: {fileID: 51053709}
+  bgMusic: {fileID: 1720760355}
 --- !u!4 &442866517
 Transform:
   m_ObjectHideFlags: 0
@@ -1678,7 +1679,7 @@ GameObject:
   - component: {fileID: 1720760355}
   m_Layer: 0
   m_Name: Background Music
-  m_TagString: Untagged
+  m_TagString: bgMusic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
