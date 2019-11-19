@@ -1,37 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Bird : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public float movementSpeed;
-    public float jumpHeight;
+	public float speed = 2;
+	public float tapForce = 300;
+    public bool gameOver = false;
+    public GameObject target;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+	public Text text;
+	// Start is called before the first frame update
+	void Start() {
+        Time.timeScale = 0;
+        GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        rb.velocity = new Vector2(movementSpeed, rb.velocity.y);
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
+	// Update is called once per frame
+	void Update() {
+        if (!gameOver)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            {
+                if (target != null)
+                {
+                    Destroy(target);
+                }
+                Time.timeScale = 1;
+                text.gameObject.SetActive(false);
+                GetComponent<Rigidbody2D>().AddForce(Vector2.up * tapForce);
+            }
         }
+	}
 
-        if(transform.position.y > 18 || transform.position.y < -19)
-        {
-            Death();
-        }
-    }
-
-    public void Death()
-    {
-        rb.velocity = Vector3.zero;
-        transform.position = new Vector2(0, 0);
-    }
+	private void OnCollisionEnter2D(Collision2D collision) {
+        gameOver = true;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
 }
+
