@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Bird : MonoBehaviour
 {
 	public float speed = 2;
 	public float tapForce = 300;
+    public bool gameOver = false;
     public GameObject target;
 
-	public UnityEngine.UI.Text text;
+	public Text text;
 	// Start is called before the first frame update
 	void Start() {
         Time.timeScale = 0;
@@ -18,18 +20,24 @@ public class Bird : MonoBehaviour
 
 	// Update is called once per frame
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
-            if(target != null)
+        if (!gameOver)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
-                Destroy(target);
+                if (target != null)
+                {
+                    Destroy(target);
+                }
+                Time.timeScale = 1;
+                text.gameObject.SetActive(false);
+                GetComponent<Rigidbody2D>().AddForce(Vector2.up * tapForce);
             }
-            Time.timeScale = 1;
-            text.gameObject.SetActive(false);
-			GetComponent<Rigidbody2D>().AddForce(Vector2.up * tapForce);
-		}
+        }
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision) {
+        gameOver = true;
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }
+
